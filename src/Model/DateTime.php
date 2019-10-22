@@ -14,7 +14,9 @@ final class DateTime
 
     public function __construct(string $value)
     {
-        if (!\Assert\Assertion::date($value, \DateTime::ATOM, 'Value is not a valid ISO 8601 format.')) {
+    	// support milliseconds in date time
+    	$format = false === strpos($value, '.') ? \DateTime::ATOM : "!Y-m-d\TH:i:s.uP";
+        if (!\Assert\Assertion::date($value, $format, 'Value is not a valid ISO 8601 format.')) {
             throw new \InvalidArgumentException('');
         }
 
