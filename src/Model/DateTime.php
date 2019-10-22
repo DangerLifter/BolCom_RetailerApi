@@ -15,8 +15,11 @@ final class DateTime
     public function __construct(string $value)
     {
     	// support milliseconds in date time
-    	$format = false === strpos($value, '.') ? \DateTime::ATOM : "!Y-m-d\TH:i:s.uP";
-        if (!\Assert\Assertion::date($value, $format, 'Value is not a valid ISO 8601 format.')) {
+		// can't just use "Y-m-d\TH:i:s.uP" because fit outputs 6 fraction digits and Assertion fails.
+		if (false !== strpos($value, '.')) {
+			$value = preg_replace('#\.\d{1,6}\+#', '+', $value); // just remove fraction
+		}
+        if (!\Assert\Assertion::date($value, \DateTime::ATOM, \sprintf('Value "%s" is not a valid ISO 8601 format.', $value))) {
             throw new \InvalidArgumentException('');
         }
 

@@ -14,11 +14,13 @@ final class ProcessingResult
         'PENDING' => 'PENDING',
         'ACCEPTED' => 'ACCEPTED',
         'REJECTED' => 'REJECTED',
+		'CANCELLED' => 'CANCELLED',
     ];
 
     const PENDING = 'PENDING';
     const ACCEPTED = 'ACCEPTED';
     const REJECTED = 'REJECTED';
+	const CANCELLED = 'CANCELLED';
 
     private $name;
     private $value;
@@ -28,6 +30,11 @@ final class ProcessingResult
         $this->name = $name;
         $this->value = self::OPTIONS[$name];
     }
+
+    public static function CANCELLED(): self
+	{
+		return new self('CANCELLED');
+	}
 
     public static function PENDING(): self
     {
@@ -61,7 +68,7 @@ final class ProcessingResult
             }
         }
 
-        throw new \InvalidArgumentException('Unknown enum value given');
+        throw new \InvalidArgumentException('Unknown enum value given: '.$value);
     }
 
     public function equals(ProcessingResult $other): bool

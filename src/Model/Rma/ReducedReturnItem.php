@@ -191,17 +191,15 @@ final class ReducedReturnItem
 
         $registrationDateTime = \BolCom\RetailerApi\Model\DateTime::fromString($data['registrationDateTime']);
 
-        if (! isset($data['returnReason']) || ! \is_string($data['returnReason'])) {
+		$returnReason = $data['returnReason'] ?? '';
+        if (!\is_string($returnReason)) {
             throw new \InvalidArgumentException("Key 'returnReason' is missing in data array or is not a string");
         }
 
-        $returnReason = $data['returnReason'];
-
-        if (! isset($data['returnReasonComments']) || ! \is_string($data['returnReasonComments'])) {
+		$returnReasonComments = $data['returnReasonComments'] ?? '';
+        if (!\is_string($returnReasonComments)) {
             throw new \InvalidArgumentException("Key 'returnReasonComments' is missing in data array or is not a string");
         }
-
-        $returnReasonComments = $data['returnReasonComments'];
 
         if (! isset($data['fulfilmentMethod']) || ! \is_string($data['fulfilmentMethod'])) {
             throw new \InvalidArgumentException("Key 'fulfilmentMethod' is missing in data array or is not a string");
