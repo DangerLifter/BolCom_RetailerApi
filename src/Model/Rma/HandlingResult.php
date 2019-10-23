@@ -20,6 +20,7 @@ final class HandlingResult
 		'FAILED_TO_COLLECT_BY_TRANSPORTER' => 'FAILED_TO_COLLECT_BY_TRANSPORTER',
 		'RETURN_ITEM_LOST' => 'RETURN_ITEM_LOST',
 		'EXCESSIVE_RETURN' => 'EXCESSIVE_RETURN',
+		'EXPIRED' => 'EXPIRED',
     ];
 
     const RETURN_RECEIVED = 'RETURN_RECEIVED';
@@ -31,6 +32,7 @@ final class HandlingResult
     const FAILED_TO_COLLECT_BY_TRANSPORTER = 'FAILED_TO_COLLECT_BY_TRANSPORTER';
     const RETURN_ITEM_LOST = 'RETURN_ITEM_LOST';
     const EXCESSIVE_RETURN = 'EXCESSIVE_RETURN';
+	const EXPIRED = 'EXPIRED';
 
     private $name;
     private $value;
@@ -40,6 +42,11 @@ final class HandlingResult
         $this->name = $name;
         $this->value = self::OPTIONS[$name];
     }
+
+	public static function EXPIRED(): self
+	{
+		return new self('EXPIRED');
+	}
 
     public static function EXCESSIVE_RETURN(): self
 	{
