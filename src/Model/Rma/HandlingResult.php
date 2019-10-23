@@ -22,7 +22,8 @@ final class HandlingResult
 		'EXCESSIVE_RETURN' => 'EXCESSIVE_RETURN',
 		'EXPIRED' => 'EXPIRED',
 		'CANCELLED_BY_CUSTOMER' => 'CANCELLED_BY_CUSTOMER',
-		'CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE' => 'CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE'
+		'CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE' => 'CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE',
+		'STILL_RECEIVED' => 'STILL_RECEIVED'
     ];
 
     const RETURN_RECEIVED = 'RETURN_RECEIVED';
@@ -37,6 +38,7 @@ final class HandlingResult
 	const EXPIRED = 'EXPIRED';
 	const CANCELLED_BY_CUSTOMER = 'CANCELLED_BY_CUSTOMER';
 	const CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE = 'CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE';
+	const STILL_RECEIVED = 'STILL_RECEIVED';
 
     private $name;
     private $value;
@@ -46,6 +48,11 @@ final class HandlingResult
         $this->name = $name;
         $this->value = self::OPTIONS[$name];
     }
+
+	public static function STILL_RECEIVED(): self
+	{
+		return new self('STILL_RECEIVED');
+	}
 
 	public static function CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE(): self
 	{
