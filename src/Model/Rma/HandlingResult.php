@@ -21,6 +21,8 @@ final class HandlingResult
 		'RETURN_ITEM_LOST' => 'RETURN_ITEM_LOST',
 		'EXCESSIVE_RETURN' => 'EXCESSIVE_RETURN',
 		'EXPIRED' => 'EXPIRED',
+		'CANCELLED_BY_CUSTOMER' => 'CANCELLED_BY_CUSTOMER',
+		'CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE' => 'CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE'
     ];
 
     const RETURN_RECEIVED = 'RETURN_RECEIVED';
@@ -33,6 +35,8 @@ final class HandlingResult
     const RETURN_ITEM_LOST = 'RETURN_ITEM_LOST';
     const EXCESSIVE_RETURN = 'EXCESSIVE_RETURN';
 	const EXPIRED = 'EXPIRED';
+	const CANCELLED_BY_CUSTOMER = 'CANCELLED_BY_CUSTOMER';
+	const CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE = 'CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE';
 
     private $name;
     private $value;
@@ -42,6 +46,16 @@ final class HandlingResult
         $this->name = $name;
         $this->value = self::OPTIONS[$name];
     }
+
+	public static function CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE(): self
+	{
+		return new self('CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE');
+	}
+
+	public static function CANCELLED_BY_CUSTOMER(): self
+	{
+		return new self('CANCELLED_BY_CUSTOMER');
+	}
 
 	public static function EXPIRED(): self
 	{
