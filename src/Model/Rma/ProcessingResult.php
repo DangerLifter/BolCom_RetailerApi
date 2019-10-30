@@ -30,12 +30,7 @@ final class ProcessingResult
         $this->name = $name;
         $this->value = self::OPTIONS[$name];
     }
-
-    public static function CANCELLED(): self
-	{
-		return new self('CANCELLED');
-	}
-
+    
     public static function PENDING(): self
     {
         return new self('PENDING');
