@@ -49,41 +49,6 @@ final class HandlingResult
         $this->value = self::OPTIONS[$name];
     }
 
-	public static function STILL_RECEIVED(): self
-	{
-		return new self('STILL_RECEIVED');
-	}
-
-	public static function CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE(): self
-	{
-		return new self('CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE');
-	}
-
-	public static function CANCELLED_BY_CUSTOMER(): self
-	{
-		return new self('CANCELLED_BY_CUSTOMER');
-	}
-
-	public static function EXPIRED(): self
-	{
-		return new self('EXPIRED');
-	}
-
-    public static function EXCESSIVE_RETURN(): self
-	{
-		return new self('EXCESSIVE_RETURN');
-	}
-
-    public static function RETURN_ITEM_LOST(): self
-	{
-		return new self('RETURN_ITEM_LOST');
-	}
-
-    public static function FAILED_TO_COLLECT_BY_TRANSPORTER(): self
-	{
-		return new self('FAILED_TO_COLLECT_BY_TRANSPORTER');
-	}
-
     public static function RETURN_RECEIVED(): self
     {
         return new self('RETURN_RECEIVED');
