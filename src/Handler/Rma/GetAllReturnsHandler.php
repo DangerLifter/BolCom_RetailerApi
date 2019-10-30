@@ -49,8 +49,11 @@ class GetAllReturnsHandler implements GetAllReturnsHandlerInterface
                 // Convert this timestamp into ISO 8601 format.
                 $return['registrationDateTime'] = (new \DateTime($return['registrationDateTime']))
                     ->format(\DateTime::ATOM);
-				$return['processingDateTime'] = (new \DateTime($return['processingDateTime']))
-					->format(\DateTime::ATOM);
+
+                if (isset($return['processingDateTime'])) {
+                    $return['processingDateTime'] = (new \DateTime($return['processingDateTime']))
+                        ->format(\DateTime::ATOM);
+                }
             }
 
             return ReturnItemList::fromArray($response);

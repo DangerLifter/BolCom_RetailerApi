@@ -26,7 +26,7 @@ final class CustomerDetails
     private $vatNumber;
     private $deliveryPhoneNumber;
 
-    public function __construct(string $salutationCode, string $firstName, string $surname, string $streetName, string $houseNumber, string $houseNumberExtended = null, string $addressSupplement = null, string $extraAddressInformation = null, string $zipCode, string $city, string $countryCode, string $email, string $company = null, string $vatNumber = null, string $deliveryPhoneNumber = null)
+    public function __construct(string $salutationCode, string $firstName = null, string $surname, string $streetName, string $houseNumber, string $houseNumberExtended = null, string $addressSupplement = null, string $extraAddressInformation = null, string $zipCode, string $city, string $countryCode, string $email, string $company = null, string $vatNumber = null, string $deliveryPhoneNumber = null)
     {
         $this->salutationCode = $salutationCode;
         $this->firstName = $firstName;
@@ -50,7 +50,7 @@ final class CustomerDetails
         return $this->salutationCode;
     }
 
-    public function firstName(): string
+    public function firstName()
     {
         return $this->firstName;
     }
@@ -125,7 +125,7 @@ final class CustomerDetails
         return new self($salutationCode, $this->firstName, $this->surname, $this->streetName, $this->houseNumber, $this->houseNumberExtended, $this->addressSupplement, $this->extraAddressInformation, $this->zipCode, $this->city, $this->countryCode, $this->email, $this->company, $this->vatNumber, $this->deliveryPhoneNumber);
     }
 
-    public function withFirstName(string $firstName): CustomerDetails
+    public function withFirstName(string $firstName = null): CustomerDetails
     {
         return new self($this->salutationCode, $firstName, $this->surname, $this->streetName, $this->houseNumber, $this->houseNumberExtended, $this->addressSupplement, $this->extraAddressInformation, $this->zipCode, $this->city, $this->countryCode, $this->email, $this->company, $this->vatNumber, $this->deliveryPhoneNumber);
     }
@@ -203,11 +203,15 @@ final class CustomerDetails
 
         $salutationCode = $data['salutationCode'];
 
-        if (! isset($data['firstName']) || ! \is_string($data['firstName'])) {
-            throw new \InvalidArgumentException("Key 'firstName' is missing in data array or is not a string");
-        }
+        if (isset($data['firstName'])) {
+            if (! \is_string($data['firstName'])) {
+                throw new \InvalidArgumentException("Value for 'firstName' is not a string in data array");
+            }
 
-        $firstName = $data['firstName'];
+            $firstName = $data['firstName'];
+        } else {
+            $firstName = null;
+        }
 
         if (! isset($data['surname']) || ! \is_string($data['surname'])) {
             throw new \InvalidArgumentException("Key 'surname' is missing in data array or is not a string");

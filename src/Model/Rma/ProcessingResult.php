@@ -14,13 +14,13 @@ final class ProcessingResult
         'PENDING' => 'PENDING',
         'ACCEPTED' => 'ACCEPTED',
         'REJECTED' => 'REJECTED',
-		'CANCELLED' => 'CANCELLED',
+        'CANCELLED' => 'CANCELLED',
     ];
 
     const PENDING = 'PENDING';
     const ACCEPTED = 'ACCEPTED';
     const REJECTED = 'REJECTED';
-	const CANCELLED = 'CANCELLED';
+    const CANCELLED = 'CANCELLED';
 
     private $name;
     private $value;
@@ -49,6 +49,11 @@ final class ProcessingResult
     public static function REJECTED(): self
     {
         return new self('REJECTED');
+    }
+
+    public static function CANCELLED(): self
+    {
+        return new self('CANCELLED');
     }
 
     public static function fromName(string $value): self

@@ -17,13 +17,13 @@ final class HandlingResult
         'REPAIR_PRODUCT' => 'REPAIR_PRODUCT',
         'CUSTOMER_KEEPS_PRODUCT_PAID' => 'CUSTOMER_KEEPS_PRODUCT_PAID',
         'STILL_APPROVED' => 'STILL_APPROVED',
-		'FAILED_TO_COLLECT_BY_TRANSPORTER' => 'FAILED_TO_COLLECT_BY_TRANSPORTER',
-		'RETURN_ITEM_LOST' => 'RETURN_ITEM_LOST',
-		'EXCESSIVE_RETURN' => 'EXCESSIVE_RETURN',
-		'EXPIRED' => 'EXPIRED',
-		'CANCELLED_BY_CUSTOMER' => 'CANCELLED_BY_CUSTOMER',
-		'CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE' => 'CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE',
-		'STILL_RECEIVED' => 'STILL_RECEIVED'
+        'CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE' => 'CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE',
+        'RETURN_ITEM_LOST' => 'RETURN_ITEM_LOST',
+        'EXPIRED' => 'EXPIRED',
+        'EXCESSIVE_RETURN' => 'EXCESSIVE_RETURN',
+        'STILL_RECEIVED' => 'STILL_RECEIVED',
+        'CANCELLED_BY_CUSTOMER' => 'CANCELLED_BY_CUSTOMER',
+        'FAILED_TO_COLLECT_BY_TRANSPORTER' => 'FAILED_TO_COLLECT_BY_TRANSPORTER',
     ];
 
     const RETURN_RECEIVED = 'RETURN_RECEIVED';
@@ -32,13 +32,13 @@ final class HandlingResult
     const REPAIR_PRODUCT = 'REPAIR_PRODUCT';
     const CUSTOMER_KEEPS_PRODUCT_PAID = 'CUSTOMER_KEEPS_PRODUCT_PAID';
     const STILL_APPROVED = 'STILL_APPROVED';
-    const FAILED_TO_COLLECT_BY_TRANSPORTER = 'FAILED_TO_COLLECT_BY_TRANSPORTER';
+    const CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE = 'CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE';
     const RETURN_ITEM_LOST = 'RETURN_ITEM_LOST';
+    const EXPIRED = 'EXPIRED';
     const EXCESSIVE_RETURN = 'EXCESSIVE_RETURN';
-	const EXPIRED = 'EXPIRED';
-	const CANCELLED_BY_CUSTOMER = 'CANCELLED_BY_CUSTOMER';
-	const CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE = 'CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE';
-	const STILL_RECEIVED = 'STILL_RECEIVED';
+    const STILL_RECEIVED = 'STILL_RECEIVED';
+    const CANCELLED_BY_CUSTOMER = 'CANCELLED_BY_CUSTOMER';
+    const FAILED_TO_COLLECT_BY_TRANSPORTER = 'FAILED_TO_COLLECT_BY_TRANSPORTER';
 
     private $name;
     private $value;
@@ -112,6 +112,41 @@ final class HandlingResult
     public static function STILL_APPROVED(): self
     {
         return new self('STILL_APPROVED');
+    }
+
+    public static function CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE(): self
+    {
+        return new self('CUSTOMER_KEEPS_PRODUCT_FREE_OF_CHARGE');
+    }
+
+    public static function RETURN_ITEM_LOST(): self
+    {
+        return new self('RETURN_ITEM_LOST');
+    }
+
+    public static function EXPIRED(): self
+    {
+        return new self('EXPIRED');
+    }
+
+    public static function EXCESSIVE_RETURN(): self
+    {
+        return new self('EXCESSIVE_RETURN');
+    }
+
+    public static function STILL_RECEIVED(): self
+    {
+        return new self('STILL_RECEIVED');
+    }
+
+    public static function CANCELLED_BY_CUSTOMER(): self
+    {
+        return new self('CANCELLED_BY_CUSTOMER');
+    }
+
+    public static function FAILED_TO_COLLECT_BY_TRANSPORTER(): self
+    {
+        return new self('FAILED_TO_COLLECT_BY_TRANSPORTER');
     }
 
     public static function fromName(string $value): self
