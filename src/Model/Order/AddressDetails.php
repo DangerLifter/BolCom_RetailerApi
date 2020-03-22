@@ -275,10 +275,6 @@ final class AddressDetails
 
         $countryCode = $data['countryCode'];
 
-        if (! isset($data['email']) || ! \is_string($data['email'])) {
-            throw new \InvalidArgumentException("Key 'email' is missing in data array or is not a string");
-        }
-
 		if (isset($data['email'])) {
 			if (! \is_string($data['email'])) {
 				throw new \InvalidArgumentException("Value for 'email' is not a string in data array");
