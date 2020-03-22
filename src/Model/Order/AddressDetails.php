@@ -279,7 +279,14 @@ final class AddressDetails
             throw new \InvalidArgumentException("Key 'email' is missing in data array or is not a string");
         }
 
-        $email = $data['email'];
+		if (isset($data['email'])) {
+			if (! \is_string($data['email'])) {
+				throw new \InvalidArgumentException("Value for 'email' is not a string in data array");
+			}
+			$email = $data['email'];
+		} else {
+			$email = null;
+		}
 
         if (isset($data['company'])) {
             if (! \is_string($data['company'])) {
