@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace BolCom\RetailerApi\Client;
 
 use kamermans\OAuth2\GrantType\ClientCredentials;
+use kamermans\OAuth2\GrantType\RefreshToken;
 use kamermans\OAuth2\Persistence\FileTokenPersistence;
 
 class Oauth2Middleware
@@ -26,12 +27,14 @@ class Oauth2Middleware
         string $accessTokenPath
     ) {
         $client = new \GuzzleHttp\Client(['base_uri' => 'https://login.bol.com/token']);
-        $clientCredentials = new ClientCredentials($client, [
-            'client_id' => $clientId,
-            'client_secret' => $clientSecret
-        ]);
+		$config = [
+			'client_id' => $clientId,
+			'client_secret' => $clientSecret
+		];
+        $clientCredentials = new ClientCredentials($client, $config);
+        $refreshGrantType = new RefreshToken($client, $config);
 
-        $this->middleware = new \kamermans\OAuth2\OAuth2Middleware($clientCredentials);
+        $this->middleware = new \kamermans\OAuth2\OAuth2Middleware($clientCredentials, $refreshGrantType);
         $this->middleware->setTokenPersistence(new FileTokenPersistence($accessTokenPath));
     }
 
