@@ -24,6 +24,7 @@ final class HandlingResult
         'STILL_RECEIVED' => 'STILL_RECEIVED',
         'CANCELLED_BY_CUSTOMER' => 'CANCELLED_BY_CUSTOMER',
         'FAILED_TO_COLLECT_BY_TRANSPORTER' => 'FAILED_TO_COLLECT_BY_TRANSPORTER',
+		'FAILED_TO_CREATE_SHIPPING_LABEL' => 'FAILED_TO_CREATE_SHIPPING_LABEL'
     ];
 
     const RETURN_RECEIVED = 'RETURN_RECEIVED';
@@ -39,6 +40,7 @@ final class HandlingResult
     const STILL_RECEIVED = 'STILL_RECEIVED';
     const CANCELLED_BY_CUSTOMER = 'CANCELLED_BY_CUSTOMER';
     const FAILED_TO_COLLECT_BY_TRANSPORTER = 'FAILED_TO_COLLECT_BY_TRANSPORTER';
+    const FAILED_TO_CREATE_SHIPPING_LABEL = 'FAILED_TO_CREATE_SHIPPING_LABEL';
 
     private $name;
     private $value;
@@ -113,6 +115,11 @@ final class HandlingResult
     {
         return new self('FAILED_TO_COLLECT_BY_TRANSPORTER');
     }
+
+    public static function FAILED_TO_CREATE_SHIPPING_LABEL(): self
+	{
+		return new self('FAILED_TO_CREATE_SHIPPING_LABEL');
+	}
 
     public static function fromName(string $value): self
     {
