@@ -16,6 +16,7 @@ final class Condition
         'GOOD' => 'GOOD',
         'REASONABLE' => 'REASONABLE',
         'MODERATE' => 'MODERATE',
+        'UNKNOWN' => 'UNKNOWN' // missed in API doc but received in real world
     ];
 
     const IS_NEW = 'NEW';
@@ -23,6 +24,7 @@ final class Condition
     const GOOD = 'GOOD';
     const REASONABLE = 'REASONABLE';
     const MODERATE = 'MODERATE';
+    const UNKNOWN = 'UNKNOWN';
 
     private $name;
     private $value;
@@ -31,6 +33,11 @@ final class Condition
     {
         $this->name = $name;
         $this->value = self::OPTIONS[$name];
+    }
+
+    public static function UNKNOWN(): self
+    {
+        return new self('UNKNOWN');
     }
 
     public static function IS_NEW(): self
