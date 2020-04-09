@@ -50,12 +50,12 @@ final class AddressDetails
         return $this->salutationCode;
     }
 
-    public function firstName(): string
+    public function firstName(): ?string
     {
         return $this->firstName;
     }
 
-    public function surName(): string
+    public function surName(): ?string
     {
         return $this->surName;
     }
