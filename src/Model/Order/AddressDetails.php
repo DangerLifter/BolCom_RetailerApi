@@ -26,7 +26,7 @@ final class AddressDetails
     private $vatNumber;
     private $deliveryPhoneNumber;
 
-    public function __construct(string $salutationCode, string $firstName, string $surName, string $streetName, string $houseNumber, string $houseNumberExtended = null, string $addressSupplement = null, string $extraAddressInformation = null, string $zipCode, string $city, string $countryCode, string $email = null, string $company = null, string $vatNumber = null, string $deliveryPhoneNumber = null)
+    public function __construct(string $salutationCode, string $firstName = null, string $surName = null, string $streetName, string $houseNumber, string $houseNumberExtended = null, string $addressSupplement = null, string $extraAddressInformation = null, string $zipCode, string $city, string $countryCode, string $email = null, string $company = null, string $vatNumber = null, string $deliveryPhoneNumber = null)
     {
         $this->salutationCode = $salutationCode;
         $this->firstName = $firstName;
@@ -125,12 +125,12 @@ final class AddressDetails
         return new self($salutationCode, $this->firstName, $this->surName, $this->streetName, $this->houseNumber, $this->houseNumberExtended, $this->addressSupplement, $this->extraAddressInformation, $this->zipCode, $this->city, $this->countryCode, $this->email, $this->company, $this->vatNumber, $this->deliveryPhoneNumber);
     }
 
-    public function withFirstName(string $firstName): AddressDetails
+    public function withFirstName(string $firstName = null): AddressDetails
     {
         return new self($this->salutationCode, $firstName, $this->surName, $this->streetName, $this->houseNumber, $this->houseNumberExtended, $this->addressSupplement, $this->extraAddressInformation, $this->zipCode, $this->city, $this->countryCode, $this->email, $this->company, $this->vatNumber, $this->deliveryPhoneNumber);
     }
 
-    public function withSurName(string $surName): AddressDetails
+    public function withSurName(string $surName = null): AddressDetails
     {
         return new self($this->salutationCode, $this->firstName, $surName, $this->streetName, $this->houseNumber, $this->houseNumberExtended, $this->addressSupplement, $this->extraAddressInformation, $this->zipCode, $this->city, $this->countryCode, $this->email, $this->company, $this->vatNumber, $this->deliveryPhoneNumber);
     }
@@ -203,17 +203,23 @@ final class AddressDetails
 
         $salutationCode = $data['salutationCode'];
 
-        if (! isset($data['firstName']) || ! \is_string($data['firstName'])) {
-            throw new \InvalidArgumentException("Key 'firstName' is missing in data array or is not a string");
-        }
+        if (isset($data['firstName'])) {
+			if (! \is_string($data['firstName'])) {
+				throw new \InvalidArgumentException("Key 'firstName' is not a string");
+			}
+			$firstName = $data['firstName'];
+		} else {
+			$firstName = null;
+		}
 
-        $firstName = $data['firstName'];
-
-        if (! isset($data['surName']) || ! \is_string($data['surName'])) {
-            throw new \InvalidArgumentException("Key 'surName' is missing in data array or is not a string");
-        }
-
-        $surName = $data['surName'];
+		if (isset($data['surName'])) {
+			if (! \is_string($data['surName'])) {
+				throw new \InvalidArgumentException("Key 'surName' is not a string");
+			}
+			$surName = $data['surName'];
+		} else {
+			$surName = null;
+		}
 
         if (! isset($data['streetName']) || ! \is_string($data['streetName'])) {
             throw new \InvalidArgumentException("Key 'streetName' is missing in data array or is not a string");
