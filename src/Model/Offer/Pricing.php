@@ -32,7 +32,7 @@ final class Pricing
      * @param \BolCom\RetailerApi\Model\Offer\BundlePrice[]|null $bundlePrices
      * @return \BolCom\RetailerApi\Model\Offer\Pricing
      */
-    public function withBundlePrices(array $bundlePrices): Pricing
+    public static function withBundlePrices(array $bundlePrices): Pricing
     {
         return new self(...$bundlePrices);
     }
