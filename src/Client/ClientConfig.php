@@ -27,6 +27,9 @@ class ClientConfig implements ClientConfigInterface
     /** @var bool $enabled */
     private $enabled;
 
+    /** @var string */
+	private $proxy;
+
     /**
      * @param string $clientId
      * @param string $clientSecret
@@ -72,4 +75,15 @@ class ClientConfig implements ClientConfigInterface
     {
         return $this->enabled;
     }
+
+	public function getProxy(): ?string
+	{
+		return $this->proxy;
+	}
+
+	public function setProxy($proxy = null): self
+	{
+		$this->proxy = (string) $proxy;
+		return $this;
+	}
 }

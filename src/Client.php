@@ -27,14 +27,23 @@ class Client extends \GuzzleHttp\Client implements ClientInterface
     ) {
         $stack = $this->handlerStack($clientConfig, $logger);
 
-        parent::__construct([
-            'handler' => $stack,
-            'base_uri' => $clientConfig->clientUrl(),
-            'headers' => ['User-Agent' => $userAgent],
-            'connect_timeout' => 10,
-            'auth' => 'oauth'
-        ]);
-    }
+        $guzzleConfig = [
+			'handler' => $stack,
+			'base_uri' => $clientConfig->clientUrl(),
+			'headers' => ['User-Agent' => $userAgent],
+			'connect_timeout' => 10,
+			'auth' => 'oauth'
+		];
+
+		if ($clientConfig->getProxy()) {
+			$guzzleConfig['proxy'] = [
+				'http' => $clientConfig->getProxy(),
+				'https' => $clientConfig->getProxy(),
+			];
+		}
+
+        parent::__construct($guzzleConfig);
+	}
 
     /**
      * @param ClientConfigInterface $clientConfig
