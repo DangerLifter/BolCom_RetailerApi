@@ -18,4 +18,6 @@ interface ClientConfigInterface
     public function accessTokenPath(): string;
 
     public function enabled(): bool;
+
+	public function getProxy(): ?string;
 }
