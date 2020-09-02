@@ -38,6 +38,7 @@ final class TransporterCode
         'PACKS' => 'PACKS',
         'COURIER' => 'COURIER',
         'RJP' => 'RJP',
+		'PES' => 'PES',
     ];
 
     const BRIEFPOST = 'BRIEFPOST';
@@ -67,6 +68,7 @@ final class TransporterCode
     const PACKS = 'PACKS';
     const COURIER = 'COURIER';
     const RJP = 'RJP';
+	const PES = 'PES';
 
     private $name;
     private $value;
@@ -211,6 +213,11 @@ final class TransporterCode
     {
         return new self('RJP');
     }
+
+	public static function PES(): self
+	{
+		return new self('PES');
+	}
 
     public static function fromName(string $value): self
     {
